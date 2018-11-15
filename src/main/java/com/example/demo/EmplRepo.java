@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.demo.model.Employee;
 
-@CrossOrigin
+@CrossOrigin()
 @RepositoryRestResource(collectionResourceRel="employees",path="employees")
 public interface EmplRepo extends JpaRepository<Employee, Integer> {
 
@@ -31,21 +31,21 @@ public interface EmplRepo extends JpaRepository<Employee, Integer> {
     Page<Employee> findAllBydesignationContaining(@Param("designation") String desigation,Pageable pageable);
 	
 	@RestResource(path = "bydoj", rel = "bydoj")
-    Page<Employee> findAllBydOJ(@Param("doj") Date dOJ,Pageable pageable);
+    Page<Employee> findAllBydoj(@Param("doj") Date doj,Pageable pageable);
 	
-	@Transactional
-	@RestResource(path = "deletebyName", rel = "deletebyName")
-    List<Employee> deleteByempname(@Param("name") String empname);
-	
-	@Transactional
-	@RestResource(path = "deletebyskill", rel = "deletebyskill")
-    List<Employee> deleteByskill(@Param("skill") String skill);
-	
-	@Transactional
-	@RestResource(path = "deletebydept", rel = "deletebydept")
-    List<Employee> deleteBydept(@Param("dept") String dept);
-	
-	@Transactional
-	@RestResource(path = "deletebydesignation", rel = "deletebydesignation")
-    List<Employee> deleteBydesignation(@Param("designation") String designation);
+//	@Transactional
+//	@RestResource(path = "deletebyName", rel = "deletebyName")
+//    List<Employee> deleteByempname(@Param("name") String empname);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebyskill", rel = "deletebyskill")
+//    List<Employee> deleteByskill(@Param("skill") String skill);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebydept", rel = "deletebydept")
+//    List<Employee> deleteBydept(@Param("dept") String dept);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebydesignation", rel = "deletebydesignation")
+//    List<Employee> deleteBydesignation(@Param("designation") String designation);
 }

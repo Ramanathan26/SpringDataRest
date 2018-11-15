@@ -9,7 +9,9 @@ public class Department {
 	
 	private String depthead;
 	@Id
+	
 	private String deptname;
+	
 	public String getDepthead() {
 		return depthead;
 	}

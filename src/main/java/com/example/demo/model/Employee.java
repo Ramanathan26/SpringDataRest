@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,17 +17,20 @@ import javax.persistence.TemporalType;
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO,generator="seq_gen")
-	@SequenceGenerator(name="seq_gen",sequenceName="id_seq",allocationSize=1)
+	@GeneratedValue
+//	@SequenceGenerator(name="seq_gen",sequenceName="id_seq",allocationSize=1)
 	private int empid;
 	private String empname;
 	private String skill;
 	@Temporal(TemporalType.DATE)
-	private Date dOJ;
+	private Date doj;
 	private String designation;
 	private int grade;
 	private String city;
 	private String country;
+	
+	@ManyToOne
+	@JoinColumn(name="deptname")
 	private Department dept;
 	
 	public int getEmpid() {
@@ -47,10 +52,10 @@ public class Employee {
 		this.skill = skill;
 	}
 	public Date getDOJ() {
-		return dOJ;
+		return doj;
 	}
-	public void setDOJ(Date dOJ) {
-		this.dOJ = dOJ;
+	public void setdoj(Date doj) {
+		this.doj = doj;
 	}
 	public String getDesignation() {
 		return designation;
@@ -84,7 +89,7 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [empid=" + empid + ", empname=" + empname + ", skill=" + skill + ", dOJ=" + dOJ
+		return "Employee [empid=" + empid + ", empname=" + empname + ", skill=" + skill + ", dOJ=" + doj
 				+ ", designation=" + designation + ", grade=" + grade + ", city=" + city + ", country=" + country
 				+ ", dept=" + dept + "]";
 	}
