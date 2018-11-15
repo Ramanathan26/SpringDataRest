@@ -19,12 +19,15 @@ public class Employee {
 	@SequenceGenerator(name="seq_gen",sequenceName="id_seq",allocationSize=1)
 	private int empid;
 	private String empname;
-	private String dept;
 	private String skill;
-	
 	@Temporal(TemporalType.DATE)
 	private Date dOJ;
 	private String designation;
+	private int grade;
+	private String city;
+	private String country;
+	private Department dept;
+	
 	public int getEmpid() {
 		return empid;
 	}
@@ -36,12 +39,6 @@ public class Employee {
 	}
 	public void setEmpname(String empname) {
 		this.empname = empname;
-	}
-	public String getDept() {
-		return dept;
-	}
-	public void setDept(String dept) {
-		this.dept = dept;
 	}
 	public String getSkill() {
 		return skill;
@@ -61,12 +58,36 @@ public class Employee {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public Department getDept() {
+		return dept;
+	}
+	public void setDept(Department dept) {
+		this.dept = dept;
+	}
 	@Override
 	public String toString() {
-		return "Employee [empid=" + empid + ", empname=" + empname + ", dept=" + dept + ", skill=" + skill + ", DOJ="
-				+ dOJ + ", designation=" + designation + "]";
+		return "Employee [empid=" + empid + ", empname=" + empname + ", skill=" + skill + ", dOJ=" + dOJ
+				+ ", designation=" + designation + ", grade=" + grade + ", city=" + city + ", country=" + country
+				+ ", dept=" + dept + "]";
 	}
-	
 	
 }
 
