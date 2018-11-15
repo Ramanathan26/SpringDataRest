@@ -25,6 +25,7 @@ public class Employee {
 	@Temporal(TemporalType.DATE)
 	private Date doj;
 	private String designation;
+	private float salary;
 	private int grade;
 	private String city;
 	private String country;
@@ -51,7 +52,7 @@ public class Employee {
 	public void setSkill(String skill) {
 		this.skill = skill;
 	}
-	public Date getDOJ() {
+	public Date getdoj() {
 		return doj;
 	}
 	public void setdoj(Date doj) {
@@ -62,6 +63,12 @@ public class Employee {
 	}
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+	public float getSalary() {
+		return salary;
+	}
+	public void setSalary(float salary) {
+		this.salary = salary;
 	}
 	public int getGrade() {
 		return grade;
@@ -89,10 +96,11 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [empid=" + empid + ", empname=" + empname + ", skill=" + skill + ", dOJ=" + doj
-				+ ", designation=" + designation + ", grade=" + grade + ", city=" + city + ", country=" + country
-				+ ", dept=" + dept + "]";
+		return "Employee [empid=" + empid + ", empname=" + empname + ", skill=" + skill + ", doj=" + doj
+				+ ", designation=" + designation + ", salary=" + salary + ", grade=" + grade + ", city=" + city
+				+ ", country=" + country + ", dept=" + dept + "]";
 	}
+	
 	
 }
 
