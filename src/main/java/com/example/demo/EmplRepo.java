@@ -18,23 +18,32 @@ import com.example.demo.model.Employee;
 @RepositoryRestResource(collectionResourceRel="employees",path="employees")
 public interface EmplRepo extends JpaRepository<Employee, Integer> {
 
-	@RestResource(path = "byName", rel = "byName")
+	@RestResource(path = "byname", rel = "byname")
     Page<Employee> findAllByempnameContaining(@Param("name") String empname,Pageable pageable);
 	
 	@RestResource(path = "byskill", rel = "byskill")
     Page<Employee> findByskillContaining(@Param("skill") String skill,Pageable pageable);
 	
-	@RestResource(path = "bydept", rel = "bydept")
-	Page<Employee> findAllBydeptContaining(@Param("dept") String dept,Pageable pageable);
-	
 	@RestResource(path = "bydesignation", rel = "bydesignation")
-    Page<Employee> findAllBydesignationContaining(@Param("designation") String desigation,Pageable pageable);
+    Page<Employee> findAllBydesignationContaining(@Param("designation") String designation,Pageable pageable);
 	
 	@RestResource(path = "bydoj", rel = "bydoj")
     Page<Employee> findAllBydoj(@Param("doj") Date doj,Pageable pageable);
 	
+	@RestResource(path = "bygrade", rel = "bygrade")
+    Page<Employee> findAllBygrade(@Param("grade") int grade,Pageable pageable);
+	
+	@RestResource(path = "bysalary", rel = "bysalary")
+    Page<Employee> findAllBysalary(@Param("salary") float salary,Pageable pageable);
+	
+	@RestResource(path = "bycity", rel = "bycity")
+    Page<Employee> findAllBycity(@Param("city") String city,Pageable pageable);
+	
+	@RestResource(path = "bycountry", rel = "bycountry")
+    Page<Employee> findAllBycountry(@Param("country") String country,Pageable pageable);
+	
 //	@Transactional
-//	@RestResource(path = "deletebyName", rel = "deletebyName")
+//	@RestResource(path = "deletebyname", rel = "deletebyname")
 //    List<Employee> deleteByempname(@Param("name") String empname);
 //	
 //	@Transactional
@@ -42,10 +51,26 @@ public interface EmplRepo extends JpaRepository<Employee, Integer> {
 //    List<Employee> deleteByskill(@Param("skill") String skill);
 //	
 //	@Transactional
-//	@RestResource(path = "deletebydept", rel = "deletebydept")
-//    List<Employee> deleteBydept(@Param("dept") String dept);
-//	
-//	@Transactional
 //	@RestResource(path = "deletebydesignation", rel = "deletebydesignation")
 //    List<Employee> deleteBydesignation(@Param("designation") String designation);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebydoj", rel = "deletebydoj")
+//    List<Employee> deleteBydoj(@Param("doj") String doj);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebygrade", rel = "deletebygrade")
+//    List<Employee> deleteBygrade(@Param("grade") String grade);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebysalary", rel = "deletebysalary")
+//    List<Employee> deleteBysalary(@Param("salary") String salary);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebycity", rel = "deletebycity")
+//    List<Employee> deleteBycity(@Param("city") String city);
+//	
+//	@Transactional
+//	@RestResource(path = "deletebycountry", rel = "deletebycountry")
+//    List<Employee> deleteBycountry(@Param("country") String country);
 }

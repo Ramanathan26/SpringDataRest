@@ -1,16 +1,24 @@
 package com.example.demo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Department {
 	
-	
-	private String depthead;
 	@Id
+	@GeneratedValue
+	private int deptid;
+	private String depthead;
 	private String deptname;
 	
+	public int getDeptid() {
+		return deptid;
+	}
+	public void setDeptid(int deptid) {
+		this.deptid = deptid;
+	}
 	public String getDepthead() {
 		return depthead;
 	}
@@ -25,7 +33,8 @@ public class Department {
 	}
 	@Override
 	public String toString() {
-		return "Department [depthead=" + depthead + ", deptname=" + deptname + "]";
+		return "Department [deptid=" + deptid + ", depthead=" + depthead + ", deptname=" + deptname + "]";
 	}
+	
 
 }
