@@ -3,6 +3,12 @@ package com.example.demo.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class Department {
@@ -10,7 +16,9 @@ public class Department {
 	@Id
 	@GeneratedValue
 	private int deptid;
-	private String depthead;
+	@OneToOne
+	@JoinColumn(name="deptheadid",nullable=true)
+	private Employee deptheadid;
 	private String deptname;
 	
 	public int getDeptid() {
@@ -19,11 +27,11 @@ public class Department {
 	public void setDeptid(int deptid) {
 		this.deptid = deptid;
 	}
-	public String getDepthead() {
-		return depthead;
+	public Employee getDeptheadid() {
+		return deptheadid;
 	}
-	public void setDepthead(String depthead) {
-		this.depthead = depthead;
+	public void setDeptheadid(Employee deptheadid) {
+		this.deptheadid = deptheadid;
 	}
 	public String getDeptname() {
 		return deptname;
@@ -33,8 +41,6 @@ public class Department {
 	}
 	@Override
 	public String toString() {
-		return "Department [deptid=" + deptid + ", depthead=" + depthead + ", deptname=" + deptname + "]";
+		return "Department [deptid=" + deptid + ", deptheadid=" + deptheadid + ", deptname=" + deptname + "]";
 	}
-	
-
 }

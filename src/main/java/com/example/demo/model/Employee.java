@@ -11,11 +11,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 public class Employee {
-	
 	@Id
 	@GeneratedValue
 	//@SequenceGenerator(name="seq_gen",sequenceName="id_seq",allocationSize=1)
