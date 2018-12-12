@@ -12,10 +12,11 @@ import java.util.regex.Pattern;
 import com.google.common.base.Joiner;
 
 public class CriteriaParser {
+	 
 	 private static Map<String, Operator> ops;
 
-	    private static Pattern SpecCriteraRegex = Pattern.compile("^(\\w+?)(" + Joiner.on("|")
-	        .join(SearchOperation.SIMPLE_OPERATION_SET) + ")(\\p{Punct}?)(\\w+?)(\\p{Punct}?)$");
+	    private static Pattern SpecCriteraRegex = Pattern.compile("^([\\w\\.]+?)(" 
+	    + String.join("|", SearchOperation.SIMPLE_OPERATION_SET) + ")(\\p{Punct}?)(\\w+?)(\\p{Punct}?)$");
 
 	    private enum Operator {
 	        OR(1), AND(2);
@@ -40,7 +41,7 @@ public class CriteriaParser {
 	        return (ops.containsKey(prevOp) && ops.get(prevOp).precedence >= ops.get(currOp).precedence);
 	    }
 
-	    public Deque<?> parse(String searchParam) {
+	    Deque<?> parse(String searchParam) {
 
 	        Deque<Object> output = new LinkedList<>();
 	        Deque<String> stack = new LinkedList<>();
@@ -58,7 +59,8 @@ public class CriteriaParser {
 	                    .equals(SearchOperation.LEFT_PARANTHESIS))
 	                    output.push(stack.pop());
 	                stack.pop();
-	            } else {
+	            }
+	            else {
 
 	                Matcher matcher = SpecCriteraRegex.matcher(token);
 	                while (matcher.find()) {
