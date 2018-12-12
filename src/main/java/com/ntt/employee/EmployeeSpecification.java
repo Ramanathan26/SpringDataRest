@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.ntt.employee;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -7,7 +7,8 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.example.demo.model.Employee;
+import com.ntt.common.SpecSearchCriteria;
+import com.ntt.model.Employee;
 
 public class EmployeeSpecification implements Specification<Employee>{
 

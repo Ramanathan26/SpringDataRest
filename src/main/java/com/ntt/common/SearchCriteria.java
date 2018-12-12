@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.ntt.common;
 
 public class SearchCriteria {
 	 private String key;

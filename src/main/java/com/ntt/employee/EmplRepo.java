@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.ntt.employee;
 
 import java.util.Date;
 import java.util.List;
@@ -21,21 +21,26 @@ import org.springframework.data.rest.core.annotation.RestResource;
 //import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.example.demo.model.Employee;
+import com.ntt.common.ApplicationRepository;
+import com.ntt.model.Employee;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 
 @CrossOrigin()
 @RepositoryRestResource(collectionResourceRel="employees",path="employees",excerptProjection=EmpRecords.class)
-@Api(tags = "Employee Entity")
-public interface EmplRepo extends JpaRepository<Employee, Integer>, JpaSpecificationExecutor<Employee>{
+//@Api(tags = "Employee Entity")
+public interface EmplRepo extends ApplicationRepository<Employee,Integer>{
 	
 	@RestResource
 	Page<Employee> findAll(Specification spec,Pageable pageable);
 	//Search
+	
+	//@ApiOperation("find all Addresses that are associated with a given Employee")
 	@RestResource(path = "byname", rel = "byname")
-    Page<Employee> findAllByempnameContaining(@Param("name") String empname,Pageable pageable);
+    Page<Employee> findAllByempnameContaining(@Param("name") /*@ApiParam(name = "Employee Name", value = "Name of the Employee", type = "body")*/ String empname,Pageable pageable);
 	
 	@RestResource(path = "byskill", rel = "byskill")
     Page<Employee> findAllByskillContaining(@Param("skill") String skill,Pageable pageable);

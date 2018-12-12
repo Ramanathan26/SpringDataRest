@@ -1,8 +1,11 @@
-package com.example.demo;
+package com.ntt.common;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
+
+import com.ntt.department.DeptRecords;
+import com.ntt.employee.EmpRecords;
 
 @Configuration
 public class RestConfig extends RepositoryRestConfigurerAdapter {

@@ -1,11 +1,11 @@
-package com.example.demo;
+package com.ntt.common;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.projection.SpelAwareProxyProjectionFactory;
 
 @Configuration
-public class SomeConfig {
+public class ControllerProjectionConfig {
 
 	 @Bean
 	  public SpelAwareProxyProjectionFactory projectionFactory() {

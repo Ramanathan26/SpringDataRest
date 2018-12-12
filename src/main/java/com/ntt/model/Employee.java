@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.ntt.model;
 
 import java.util.Date;
 import javax.persistence.Entity;
@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+//import com.example.demo.model.Department;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 

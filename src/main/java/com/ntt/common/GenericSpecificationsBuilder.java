@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.ntt.common;
 
 import java.util.ArrayList;
 import java.util.Collections;
