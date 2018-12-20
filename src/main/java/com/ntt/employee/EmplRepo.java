@@ -1,20 +1,8 @@
 package com.ntt.employee;
 
 import java.util.Date;
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-//import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
-//import org.springframework.data.querydsl.QuerydslPredicateExecutor;
-//import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
-//import org.springframework.data.querydsl.binding.QuerydslBindings;
-//import org.springframework.data.querydsl.binding.SingleValueBinding;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -23,10 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.ntt.common.ApplicationRepository;
 import com.ntt.model.Employee;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 
 @CrossOrigin()
