@@ -6,6 +6,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 
 import com.ntt.department.DeptRecords;
 import com.ntt.employee.EmpRecords;
+import com.ntt.employee.EmpRecords2;
 
 @Configuration
 public class RestConfig extends RepositoryRestConfigurerAdapter {
@@ -15,5 +16,6 @@ public class RestConfig extends RepositoryRestConfigurerAdapter {
       RepositoryRestConfiguration repositoryRestConfiguration) {
         repositoryRestConfiguration.getProjectionConfiguration().addProjection(EmpRecords.class);
         repositoryRestConfiguration.getProjectionConfiguration().addProjection(DeptRecords.class);
+        repositoryRestConfiguration.getProjectionConfiguration().addProjection(EmpRecords2.class);
     }
 }
