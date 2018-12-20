@@ -39,12 +39,18 @@ public class EmployeeController extends GenericController<Employee,Integer>
 	@GetMapping("/employees/search")
     @ResponseBody
     public ResponseEntity<?> findAllByAdvPredicate(@RequestParam(value="advsearch") String search,Pageable pageable) {
-    Specification<Employee> spec = resolveSpecificationFromInfixExpr(search);
-    Page<Employee> empl =repo.findAll(spec,pageable);
+    Page<Employee> empl;
+    if (search != null && !search.isEmpty()) 
+    {
+	Specification<Employee> spec = resolveSpecificationFromInfixExpr(search);
+    empl =repo.findAll(spec,pageable);
+    }
+    else
+    {
+    empl =repo.findAll(pageable);
+    }
     Page<EmpRecords> projected = empl.map(l -> factory.createProjection(EmpRecords.class, l));
     PagedResources<Resource<EmpRecords>> resources = assembler.toResource(projected);
     return ResponseEntity.ok(resources);
     }
-   
-   
 }
