@@ -24,10 +24,6 @@ import com.ntt.model.Employee;
 public abstract class GenericController<T,ID extends Serializable> {
 	
         private ApplicationRepository<T, ID> repo;
-	    @Autowired
-	    private ProjectionFactory factory;
-	    @Autowired
-		private PagedResourcesAssembler<EmpRecords> assembler;
 
 	    private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -37,22 +33,23 @@ public abstract class GenericController<T,ID extends Serializable> {
 	    protected Logger getLogger() {
 	        return log;
 	    }
-
-	    @GetMapping("/employees/search")
-	    @ResponseBody
-	    public ResponseEntity<?> findAllByAdvPredicate(@RequestParam(value="advsearch") String search,Pageable pageable) {
-	        Specification<Employee> spec = resolveSpecificationFromInfixExpr(search);
-	        Page<Employee> empl =repo.findAll(spec,pageable);
-	        Page<EmpRecords> projected = empl.map(l -> factory.createProjection(EmpRecords.class, l));
-	        PagedResources<Resource<EmpRecords>> resources = assembler.toResource(projected);
-	        return ResponseEntity.ok(resources);
-	    }
-	     
-	    protected Specification<Employee> resolveSpecificationFromInfixExpr(String searchParameters) {
+	    protected Specification<T> resolveSpecificationFromInfixExpr(String searchParameters) {
 	        CriteriaParser parser = new CriteriaParser();
-	        GenericSpecificationsBuilder<Employee> specBuilder = new GenericSpecificationsBuilder<>();
-	        return specBuilder.build(parser.parse(searchParameters), BaseGenericSpecification<Employee>::new);
-	     
+	        GenericSpecificationsBuilder<T> specBuilder = new GenericSpecificationsBuilder<>();
+	        return specBuilder.build(parser.parse(searchParameters), BaseGenericSpecification::new);
 	    }
-	
+	    
+	    protected Page<T> findAllByAdvPredicate(Pageable pageable, String search) {
+	    	
+	        if (search != null && !search.isEmpty()) {
+	            Specification<T> spec = resolveSpecificationFromInfixExpr(search);
+	            Page<T> data = repo.findAll(spec, pageable);
+	            return data;
+	        } else {
+	            Page<T> data = repo.findAll(pageable);
+	            return data;
+	        }
+	    
+	    
+	    }
 }

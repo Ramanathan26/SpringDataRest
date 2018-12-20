@@ -10,18 +10,18 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.jpa.domain.Specification;
 
-public class GenericSpecificationsBuilder<E> {
+public class GenericSpecificationsBuilder<T> {
     private final List<SpecSearchCriteria> params;
 
     public GenericSpecificationsBuilder() {
         this.params = new ArrayList<>();
     }
 
-    public final GenericSpecificationsBuilder<E> with(final String key, final String operation, final Object value, final String prefix, final String suffix) {
+    public final GenericSpecificationsBuilder<T> with(final String key, final String operation, final Object value, final String prefix, final String suffix) {
         return with(null, key, operation, value, prefix, suffix);
     }
 
-	public final GenericSpecificationsBuilder<E> with(final String precedenceIndicator, final String key, final String operation, final Object value, final String prefix, final String suffix) {
+	public final GenericSpecificationsBuilder<T> with(final String precedenceIndicator, final String key, final String operation, final Object value, final String prefix, final String suffix) {
         SearchOperation op = SearchOperation.getSimpleOperation(operation.charAt(0));
         if (op != null) {
             if (op == SearchOperation.EQUALITY) // the operation may be complex operation
@@ -42,17 +42,17 @@ public class GenericSpecificationsBuilder<E> {
         return this;
     }
 
-    public Specification<E> build(Function<SpecSearchCriteria, Specification<E>> converter) {
+    public Specification<T> build(Function<SpecSearchCriteria, Specification<T>> converter) {
 
         if (params.size() == 0) {
             return null;
         }
 
-        final List<Specification<E>> specs = params.stream()
+        final List<Specification<T>> specs = params.stream()
             .map(converter)
             .collect(Collectors.toCollection(ArrayList::new));
 
-        Specification<E> result = specs.get(0);
+        Specification<T> result = specs.get(0);
 
         for (int idx = 1; idx < specs.size(); idx++) {
             result = params.get(idx)
@@ -66,9 +66,9 @@ public class GenericSpecificationsBuilder<E> {
         return result;
     }
 
-    public Specification<E> build(Deque<?> postFixedExprStack, Function<SpecSearchCriteria, Specification<E>> converter) {
+    public Specification<T> build(Deque<?> postFixedExprStack, Function<SpecSearchCriteria, Specification<T>> converter) {
 
-        Deque<Specification<E>> specStack = new LinkedList<>();
+        Deque<Specification<T>> specStack = new LinkedList<>();
 
         Collections.reverse((List<?>) postFixedExprStack);
 
@@ -78,8 +78,8 @@ public class GenericSpecificationsBuilder<E> {
             if (!(mayBeOperand instanceof String)) {
                 specStack.push(converter.apply((SpecSearchCriteria) mayBeOperand));
             } else {
-                Specification<E> operand1 = specStack.pop();
-                Specification<E> operand2 = specStack.pop();
+                Specification<T> operand1 = specStack.pop();
+                Specification<T> operand2 = specStack.pop();
                 if (mayBeOperand.equals(SearchOperation.AND_OPERATOR))
                     specStack.push(Specification.where(operand1)
                         .and(operand2));

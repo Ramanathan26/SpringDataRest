@@ -34,8 +34,8 @@ import io.swagger.annotations.ApiParam;
 //@Api(tags = "Employee Entity")
 public interface EmplRepo extends ApplicationRepository<Employee,Integer>{
 	
-	@RestResource
-	Page<Employee> findAll(Specification spec,Pageable pageable);
+	//@RestResource
+	//Page<Employee> findAll(Specification spec,Pageable pageable);
 	//Search
 	
 	//@ApiOperation("find all Addresses that are associated with a given Employee")

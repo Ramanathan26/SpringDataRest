@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Joiner;
-
 public class CriteriaParser {
 	 
 	 private static Map<String, Operator> ops;
