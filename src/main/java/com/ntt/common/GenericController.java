@@ -39,17 +39,6 @@ public abstract class GenericController<T,ID extends Serializable> {
 	        return specBuilder.build(parser.parse(searchParameters), BaseGenericSpecification::new);
 	    }
 	    
-	    protected Page<T> findAllByAdvPredicate(Pageable pageable, String search) {
-	    	
-	        if (search != null && !search.isEmpty()) {
-	            Specification<T> spec = resolveSpecificationFromInfixExpr(search);
-	            Page<T> data = repo.findAll(spec, pageable);
-	            return data;
-	        } else {
-	            Page<T> data = repo.findAll(pageable);
-	            return data;
-	        }
 	    
 	    
-	    }
 }
